@@ -74,11 +74,6 @@ class FormPostUpdate(FlaskForm):
 
     submit = SubmitField('Оновити')
 
-    def validate_title(self, field):
-        if Post.query.filter_by(title=field.data).first():
-            raise ValidationError(
-                'Ви вже створювали публікацію з такою самою назвою!')
-
     @classmethod
     def new(cls):
         # Instantiate the form
