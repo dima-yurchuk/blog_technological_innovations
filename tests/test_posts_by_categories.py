@@ -99,14 +99,13 @@ class TestsPostsViewByCategories(BaseTestCase):
 
         # перевіряємо чи спіпадає загальна кількість публікацій
         # на сторінці категорії із фактичною, в БД
-        self.assertTrue(len(list_posts_from_page) ==
-                        posts_from_db.count())
+        self.assertTrue(len(list_posts_from_page) == posts_from_db.count())
 
         list_of_posts_from_db = [post.title for post in posts_from_db]
         # print(list_of_posts_from_db)
         # перевіряємо чи співпадають публікації на сторінці і в БД
-        self.assertTrue(list_posts_from_page.sort() ==
-                        list_of_posts_from_db.sort())
+        self.assertTrue(list_posts_from_page.sort() == list_of_posts_from_db.
+                        sort())
 
 
 class TestsPostsViewByUsers(BaseTestCase):
@@ -140,8 +139,8 @@ class TestsPostsViewByUsers(BaseTestCase):
         list_of_posts_from_db = [post.title for post in posts_from_db]
         # print(list_of_posts_from_db)
         # перевіряємо чи співпадають публікації на сторінці і в БД
-        self.assertTrue(list_posts_from_page.sort() ==
-                        list_of_posts_from_db.sort())
+        self.assertTrue(list_posts_from_page.sort() == list_of_posts_from_db.
+                        sort())
 
 
 if __name__ == '__main__':

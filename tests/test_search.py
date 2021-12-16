@@ -10,8 +10,7 @@ app.config.update(SQLALCHEMY_DATABASE_URI='sqlite:///testing.db',
                   IMG_STORAGE_URL='https://res.cloudinary.com/hzulapzqj/'
                                   'image/upload/v1639663786/pictures_dev/',
                   IMG_STORAGE_FOLDER='pictures_dev',
-                  NUM_PER_PAGE=10
-                )
+                  NUM_PER_PAGE=10)
 # from flask import url_for
 from app.user.models import User
 from app.blog.models import Category, Post
@@ -134,14 +133,14 @@ class TestsSearch(BaseTestCase):
         found_posts = re.findall(
             r'<a class="article-title" href="/post/\d+?">(.+?)</a>',
             response.get_data(as_text=True))
-        self.assertTrue(found_posts.sort() ==
-                        ['Назва блогу 1', 'Назва блогу 2', 'Назва блогу 3',
-                         'Назва блогу 4', 'Назва блогу 5'].sort())
+        list_for_maching = ['Назва блогу 1', 'Назва блогу 2', 'Назва блогу 3',
+                            'Назва блогу 4', 'Назва блогу 5']
+        self.assertTrue(found_posts.sort() == list_for_maching.sort())
 
     def test_search_by_keywords(self):
         response = self.client.get('/search',
-                                   query_string={'query': 'Найкращий смартфон'},
-                                   content_type='html/text')
+                                   query_string={'query': 'Найкращий смартфон'}
+                                   , content_type='html/text')
         self.assert200(response)
         self.assertTemplateUsed('search_results.html')
 
