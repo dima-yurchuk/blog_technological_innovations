@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from PIL import Image
 from flask import render_template, redirect, url_for, flash, request, \
-    current_app, session
+    current_app, session, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 from app import db, bcrypt, mail, login_manager
@@ -14,21 +14,25 @@ from .models import User
 from .forms import LoginForm, RegistrationForm, AccountUpdateForm,\
     PasswordUpdateForm, ResetPasswordForm, RequestPasswordResetForm
 from app.utils import handle_posts_view
+import cloudinary
+import cloudinary.uploader
+from io import BytesIO
 
 
 def save_picture(form_picture):
-    rendom_hex = secrets.token_hex(8)
-    f_name, f_ext = os.path.splitext(form_picture.filename)
-    picture_fn = rendom_hex + f_ext
-    picture_path = os.path.join(user_bp.root_path,
-                                '../static/profile_pictures', picture_fn)
-    # form_picture.save(picture_path)
-    # return  picture_fn
     output_size = (800, 800)
     im = Image.open(form_picture)
     im.thumbnail(output_size)
-    im.save(picture_path)
-    return picture_fn
+    buf = BytesIO()
+    # зберігаємо об'єкт Image в об'єкт BytesIO
+    im.save(buf, 'png')
+    buf.seek(0)
+    image_bytes = buf.read()
+    buf.close()
+    upload_result = cloudinary.uploader.upload(
+        image_bytes, folder=current_app.config['IMG_STORAGE_FOLDER'])
+    return upload_result.get("url").split(
+        current_app.config['IMG_STORAGE_FOLDER']+'/')[1]
 
 
 # @login_manager.unauthorized_handler

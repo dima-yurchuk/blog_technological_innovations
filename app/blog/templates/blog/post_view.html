@@ -26,7 +26,7 @@
       <div class="card-text text-break">{{post.content|safe}}</div>
     </div>
     <div class="card-footer light-silver-bg">
-      <img src="{{url_for('static',filename='profile_pictures/' + post.user_br.picture)}}" class="rounded-circle post-author-img" alt="author-image">
+      <img src="{{config.IMG_STORAGE_URL+post.user_br.picture}}" class="rounded-circle post-author-img" alt="author-image">
       <a class="post-author-name" href="{{url_for('blog_bp_in.user_posts', id=post.user_br.id)}}"> <b>{{post.user_br.username}}</b></a>&nbsp;&nbsp;
       <a href="{{url_for('blog_bp_in.posts_by_category', id=post.category_br.id)}}" class="link-dark">#{{ post.category_br.name }}</a>
     </div>
@@ -54,7 +54,7 @@
       <ul class="list-group list-group-flush">
         {%for comment in comments%}
           <li class="list-group-item d-flex">
-            <img src="{{url_for('static',filename='profile_pictures/' + comment.user_br.picture)}}" class="rounded-circle comment-author-img " alt="author-image">
+            <img src="{{config.IMG_STORAGE_URL+comment.user_br.picture}}" class="rounded-circle comment-author-img " alt="author-image">
             <div class="ms-3">
               <h5 style="display: block; margin-bottom: 0em;">{{comment.user_br.username}}</h5>
               <small id="comment-date" class="text-muted fst-italic" style="display: block;">{{comment.created_at.strftime('%H:%M %d.%m.%Y')}}</small>

@@ -4,7 +4,7 @@
 
   <div class="default-posts-list">
     <div align="center">
-      <img src="{{url_for('static',filename='profile_pictures/' + user.picture)}}" class="rounded-circle author-img" alt="author-image">
+      <img src="{{config.IMG_STORAGE_URL+user.picture}}" class="rounded-circle author-img" alt="author-image">
       <legend class="border-bottom mb-4"> <h3>{{user.username}}</h3>
         <p>
           <small class="text-muted"><i class="bi bi-card-heading" title="Загальна кількість публікацій"></i> {{user.get_statistic()['posts_num'] }}</small>

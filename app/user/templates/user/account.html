@@ -7,8 +7,7 @@
         <legend class="border-bottom text-center text-title p-1">Інформація про мене</legend>
         <div align="right"><a href="{{url_for('user_bp_in.account_update')}}" role="button" class="btn btn-outline-secondary btn-sm bi bi-pencil-square m-0" id="edit-button"> Редагувати дані</a></div>
           <div align="center">
-            <img src="{{url_for('static',filename='profile_pictures/' + current_user.picture)}}" class="rounded-circle profile-img" alt="profile-image">
-
+            <img src="{{config.IMG_STORAGE_URL+current_user.picture}}" class="rounded-circle profile-img" alt="profile-image">
             <div class="card-body">
               <h5 class="card-title">{{ current_user.username }}</h5>
               <mark><em class="card-title text-muted">{{ current_user.email }}</em></mark>
@@ -57,7 +56,7 @@
                         <small class="text-muted">({{ comment.post_br.created_at.strftime('%d-%m-%Y') }})</small>
                       </div>
                       <div class="d-flex" style="margin-left: 10px;">
-                        <img src="{{url_for('static',filename='profile_pictures/' + comment.user_br.picture)}}" class="rounded-circle comment-author-img mt-1" alt="author-image">
+                        <img src="{{config.IMG_STORAGE_URL+comment.user_br.picture}}" class="rounded-circle comment-author-img mt-1" alt="author-image">
                         <div class="ms-3">
                           <h6 style="display: block; margin-bottom: 0em;">{{comment.user_br.username}}</h6>
                           <small id="comment-date" class="text-muted fst-italic" style="display: block;">{{comment.created_at.strftime('%H:%M %d-%m-%Y')}}</small>

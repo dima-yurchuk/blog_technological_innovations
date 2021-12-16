@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):  # type: ignore
     # type: ignore
     password = db.Column(db.String(70), nullable=False)
     # type: ignore
-    picture = db.Column(db.String(20), nullable=False,
+    picture = db.Column(db.String(30), nullable=False,
                         server_default='default.jpg')  # type: ignore
     admin = db.Column(db.Boolean, default=False)  # type: ignore
 
