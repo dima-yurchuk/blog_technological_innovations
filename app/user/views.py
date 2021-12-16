@@ -32,7 +32,7 @@ def save_picture(form_picture):
     upload_result = cloudinary.uploader.upload(
         image_bytes, folder=current_app.config['IMG_STORAGE_FOLDER'])
     return upload_result.get("url").split(
-        current_app.config['IMG_STORAGE_FOLDER']+'/')[1]
+        current_app.config['IMG_STORAGE_FOLDER'] + '/')[1]
 
 
 # @login_manager.unauthorized_handler

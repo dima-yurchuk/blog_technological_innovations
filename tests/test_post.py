@@ -4,7 +4,10 @@ from app import db, create_app
 
 app = create_app()
 app.config.update(SQLALCHEMY_DATABASE_URI='sqlite:///testing.db',
-                  SECRET_KEY='asfdsfsaaffdf', WTF_CSRF_ENABLED=False)
+                  SECRET_KEY='asfdsfsaaffdf', WTF_CSRF_ENABLED=False,
+                  IMG_STORAGE_URL='https://res.cloudinary.com/hzulapzqj/'
+                                  'image/upload/v1639663786/pictures_dev/',
+                  IMG_STORAGE_FOLDER='pictures_dev')
 from app.user.models import User
 from app.blog.models import Category, Post
 from flask_login import current_user
