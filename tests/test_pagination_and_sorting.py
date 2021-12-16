@@ -325,8 +325,8 @@ class TestSorting(BaseTestCase):
             r'<a class="article-title" href="/post/\d+?">(.+?)</a>',
             response.get_data(as_text=True))
         # Публікація №5 (3:likes 0:dis) Публікація №1 (2:likes 1:dis)
-        self.assertTrue(all_posts_titles ==
-                        ['Публікація №5 (best)', 'Публікація №1 (oldest)'])
+        self.assertTrue(all_posts_titles == ['Публікація №5 (best)',
+                                             'Публікація №1 (oldest)'])
 
         response = self.client.get('/',
                                    query_string={'sort_by': 'best',
@@ -340,8 +340,8 @@ class TestSorting(BaseTestCase):
         # Публікація №7 (0:likes 0:dis), але вища за іних з нулями лайків і
         # дизлайків - через новішу дату
         # print(all_posts_titles)
-        self.assertTrue(all_posts_titles ==
-                        ['Публікація №2', 'Публікація №7 (newest)'])
+        self.assertTrue(all_posts_titles == ['Публікація №2',
+                                             'Публікація №7 (newest)'])
 
 
 if __name__ == '__main__':

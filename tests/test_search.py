@@ -133,14 +133,15 @@ class TestsSearch(BaseTestCase):
         found_posts = re.findall(
             r'<a class="article-title" href="/post/\d+?">(.+?)</a>',
             response.get_data(as_text=True))
-        list_for_maching = ['Назва блогу 1', 'Назва блогу 2', 'Назва блогу 3',
-                            'Назва блогу 4', 'Назва блогу 5']
-        self.assertTrue(found_posts.sort() == list_for_maching.sort())
+        list_for_matching = ['Назва блогу 1', 'Назва блогу 2', 'Назва блогу 3',
+                             'Назва блогу 4', 'Назва блогу 5']
+        self.assertTrue(found_posts.sort() == list_for_matching.sort())
 
     def test_search_by_keywords(self):
         response = self.client.get('/search',
-                                   query_string={'query': 'Найкращий смартфон'}
-                                   , content_type='html/text')
+                                   query_string={
+                                       'query': 'Найкращий смартфон'},
+                                   content_type='html/text')
         self.assert200(response)
         self.assertTemplateUsed('search_results.html')
 
@@ -148,10 +149,10 @@ class TestsSearch(BaseTestCase):
         found_posts = re.findall(
             r'<a class="article-title" href="/post/\d+?">(.+?)</a>',
             response.get_data(as_text=True))
-        self.assertTrue(found_posts.sort() ==
-                        ['Найкращий бюджетний смартфон',
-                         'Найкращий флагманський смартфон',
-                         'Найкращий смартфон'].sort())
+        list_for_matching = ['Найкращий бюджетний смартфон',
+                             'Найкращий флагманський смартфон',
+                             'Найкращий смартфон']
+        self.assertTrue(found_posts.sort() == list_for_matching.sort())
 
 
 if __name__ == '__main__':

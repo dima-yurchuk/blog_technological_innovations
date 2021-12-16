@@ -133,8 +133,7 @@ class TestsPostsViewByUsers(BaseTestCase):
 
         # перевіряємо чи спіпадає загальна кількість публікацій
         # на сторінці категорії із фактичною, в БД
-        self.assertTrue(len(list_posts_from_page) ==
-                        posts_from_db.count())
+        self.assertTrue(len(list_posts_from_page) == posts_from_db.count())
 
         list_of_posts_from_db = [post.title for post in posts_from_db]
         # print(list_of_posts_from_db)
