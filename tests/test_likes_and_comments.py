@@ -21,14 +21,14 @@ class BaseTestCase(TestCase):
         db.drop_all()
         db.create_all()
         db.session.add_all([
-            Category(name='Смартфони'),
-            Category(name='Ноутбуки'),
             User(username='tester01',
                  email='tester01@gmail.com',
                  password='qwerTy#45'),
             User(username='unit_tester_comment',
                  email='unit_tester_comment@gmail.com',
                  password='qwerTy#45'),
+            Category(name='Смартфони'),
+            Category(name='Ноутбуки'),
             Post(category_id=1, user_id=1, title='Назва блогу 1',
                  content='text text text text'),
             Post(category_id=2, user_id=2, title='Назва блогу 2',
@@ -42,7 +42,8 @@ class BaseTestCase(TestCase):
             Post(category_id=1, user_id=1, title='The Best blog12',
                  content='text text text text'),
             Post(category_id=1, user_id=1, title='Супер Найкращий блог12',
-                 content='text text text text')])
+                 content='text text text text')
+        ])
         db.session.commit()
 
     def tearDown(self):
@@ -184,3 +185,7 @@ class TestsLikes(BaseTestCase):
             'class="bi" data-toggle="tooltip">1</a>'
             in response.get_data(as_text=True)
         )
+
+
+if __name__ == '__main__':
+    unittest.main()

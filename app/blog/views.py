@@ -183,14 +183,14 @@ def user_posts(id):
 
 @blog_bp.route('/category/<int:id>')
 def posts_by_category(id):
-    print("posts_by_category")
-    print(id)
+    # print("posts_by_category")
+    # print(id)
     Category.query.get_or_404(id)
     posts, sort_by = handle_posts_view(
         Post.query.filter_by(category_id=id),
         request.args
     )
-    print("sort_by==", sort_by)
+    # print("sort_by ==", sort_by)
     return render_template('posts_by_category.html', posts=posts,
                            sort_by=sort_by)
 

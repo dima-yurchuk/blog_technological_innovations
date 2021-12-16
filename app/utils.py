@@ -1,10 +1,11 @@
 from app.user.models import Post
+from flask import current_app
 
 
 def sort_posts(posts, sort_by):
     # print('sort_posts')
     if sort_by == 'best':
-        print('best')
+        # print('best')
         return posts.order_by(
             (Post.total_likes - Post.total_dislikes).desc(),
             Post.total_likes.desc(),
@@ -23,6 +24,7 @@ def handle_posts_view(posts, request_args):
     sort_by = request_args.get('sort_by', 'newest', type=str)
 
     posts = sort_posts(posts, sort_by)
-    posts = posts.paginate(page=page, per_page=5)
+    posts = posts.paginate(page=page,
+                           per_page=current_app.config['NUM_PER_PAGE'])
 
     return posts, sort_by
