@@ -136,7 +136,7 @@ class PostModelView(ModelView):
         # Format your string here e.g show first 20 characters
         # can return any valid HTML e.g. a link to another view to
         # show the detail or a popup window
-        return model.content[:250]
+        return model.content[:50]
 
     can_create = False
     column_formatters = {
