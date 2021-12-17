@@ -6,7 +6,8 @@
 	The website is intended for users who want to be the first to learn about new tech devices: smartphones, laptops, tablets, etc.
 	The user will be able to read a brief description of the functionality, main characteristics of the device, see photos, and get  a feedback about the product.
 	The site will provide the possibility of registration. A registered user will have their own profile page and will be able to write their own posts of review. 			Communication between users is also important. Therefore, the user will be able to rate (like/dislike) the review and write a comment on it.
- 
+## URL to website:
+https://blog-technological-innovations.herokuapp.com/
 ## Stack technologies: flask, python, html, css, sqlite, bootstrap.
 
 * Trello - https://trello.com/b/zvIob6WD/blog-an-overview-of-new-tech-products
