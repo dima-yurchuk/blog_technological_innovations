@@ -4,7 +4,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 WTF_CRSF_ENAVLED = True
-# Database
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 MAIL_SERVER = 'smtp.googlemail.com'
@@ -22,3 +21,6 @@ MSEARCH_BACKEND = 'whoosh'
 MSEARCH_ENABLE = True
 # when backend is elasticsearch
 ELASTICSEARCH = {"hosts": ["127.0.0.1:5000"]}
+
+# num of posts per page
+NUM_PER_PAGE = 10

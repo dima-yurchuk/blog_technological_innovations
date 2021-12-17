@@ -21,28 +21,13 @@ class BaseTestCase(TestCase):
         db.drop_all()
         db.create_all()
         db.session.add_all([
-            Category(name='Смартфони'),
-            Category(name='Ноутбуки'),
             User(username='tester01',
                  email='tester01@gmail.com',
                  password='qwerTy#45'),
             User(username='unit_tester_comment',
                  email='unit_tester_comment@gmail.com',
-                 password='qwerTy#45'),
-            Post(category_id=1, user_id=1, title='Назва блогу 1',
-                 content='text text text text'),
-            Post(category_id=2, user_id=2, title='Назва блогу 2',
-                 content='text text text text'),
-            Post(category_id=1, user_id=1, title='Назва блогу 3',
-                 content='text text text text'),
-            Post(category_id=2, user_id=2, title='Назва блогу 4',
-                 content='text text text text'),
-            Post(category_id=1, user_id=1, title='Назва блогу 5',
-                 content='text text text text'),
-            Post(category_id=1, user_id=1, title='The Best blog12',
-                 content='text text text text'),
-            Post(category_id=1, user_id=1, title='Супер Найкращий блог12',
-                 content='text text text text')])
+                 password='qwerTy#45')
+        ])
         db.session.commit()
 
     def tearDown(self):
@@ -50,12 +35,13 @@ class BaseTestCase(TestCase):
         db.drop_all()
 
 
-class TestHomePage(BaseTestCase):
-    def test_home_page(self):
-        response = self.client.get('/', content_type='html/text')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'TechBlog', response.data)
-        self.assertTrue('Категорії' in response.get_data(as_text=True))
+# class TestHomePage(BaseTestCase):
+#     def test_home_page(self):
+#         response = self.client.get('/', content_type='html/text')
+#         self.assert200(response)
+#         self.assertTemplateUsed('home.html')
+#         self.assertIn(b'TechBlog', response.data)
+#         self.assertTrue('Категорії' in response.get_data(as_text=True))
 
 
 class TestLoginRegistration(BaseTestCase):
@@ -205,3 +191,7 @@ class TestLoginRegistration(BaseTestCase):
             self.assertMessageFlashed('Введено невірний пароль.',
                                       category='danger')
             self.assert401(self.client.get('auth/account'))
+
+
+if __name__ == '__main__':
+    unittest.main()
